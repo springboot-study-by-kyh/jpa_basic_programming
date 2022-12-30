@@ -18,14 +18,11 @@ public class Main {
         entityTransaction.begin();
 
         try {
+            Member member1 = new Member(150L, "A");
+            Member member2 = new Member(160L, "B");
 
-            // 비영속상태
-            Member member = new Member();
-            member.setId(3L);
-            member.setName("hello JPA");
-
-            // 영속상태
-            entityManager.persist(member);
+            entityManager.persist(member1);
+            entityManager.persist(member2);
 
             entityTransaction.commit();
         } catch (Exception e) {
