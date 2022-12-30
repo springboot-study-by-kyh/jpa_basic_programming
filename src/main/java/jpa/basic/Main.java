@@ -19,8 +19,13 @@ public class Main {
 
         try {
 
-            Member findMember = entityManager.find(Member.class, 1L);
+            // 비영속상태
+            Member member = new Member();
+            member.setId(3L);
+            member.setName("hello JPA");
 
+            // 영속상태
+            entityManager.persist(member);
 
             entityTransaction.commit();
         } catch (Exception e) {
