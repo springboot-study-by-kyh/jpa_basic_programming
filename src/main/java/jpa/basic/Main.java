@@ -17,15 +17,18 @@ public class Main {
 
         entityTransaction.begin();
 
-        Member member = new Member();
-        member.setId(1L);
-        member.setName("HelloA");
+        try {
 
-        entityManager.persist(member);
+            Member findMember = entityManager.find(Member.class, 1L);
 
-        entityTransaction.commit();
 
-        entityManager.close();
+            entityTransaction.commit();
+        } catch (Exception e) {
+            entityTransaction.rollback();
+        } finally {
+            entityManager.close(); // 엔티티 매니저를 닫아주는것이 중요함.
+        }
+
         entityManagerFactory.close();
     }
 }
