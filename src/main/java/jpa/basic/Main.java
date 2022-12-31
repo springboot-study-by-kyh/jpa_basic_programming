@@ -18,11 +18,10 @@ public class Main {
         entityTransaction.begin();
 
         try {
-            Member member1 = new Member(150L, "A");
-            Member member2 = new Member(160L, "B");
-
+            Member member1 = new Member(200L, "member200");
             entityManager.persist(member1);
-            entityManager.persist(member2);
+
+            entityManager.flush();
 
             entityTransaction.commit();
         } catch (Exception e) {
