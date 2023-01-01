@@ -18,11 +18,13 @@ public class Main {
         entityTransaction.begin();
 
         try {
-            Member member1 = new Member(200L, "member200");
-            entityManager.persist(member1);
 
-            entityManager.flush();
+            Member member = new Member();
+            member.setId(1L);
+            member.setUsername("A");
+            member.setRoleType(RoleType.USER);
 
+            entityManager.persist(member);
             entityTransaction.commit();
         } catch (Exception e) {
             entityTransaction.rollback();
