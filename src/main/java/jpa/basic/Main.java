@@ -19,15 +19,22 @@ public class Main {
 
         try {
 
+            // Team Table 저장
             Team team = new Team();
-
             team.setName("TeamA");
             entityManager.persist(team);
 
+            // Member Table 저장
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeamId(team.getId());
+            member.setTeam(team);
             entityManager.persist(member);
+
+            Member findMember = entityManager.find(Member.class, member.getId());
+
+            Team findTeam = findMember.getTeam();
+
+            System.out.println("findTeam : " + findTeam.getName());
 
             entityTransaction.commit();
         } catch (Exception e) {
