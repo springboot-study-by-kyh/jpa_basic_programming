@@ -19,6 +19,16 @@ public class Main {
 
         try {
 
+            Team team = new Team();
+
+            team.setName("TeamA");
+            entityManager.persist(team);
+
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setTeamId(team.getId());
+            entityManager.persist(member);
+
             entityTransaction.commit();
         } catch (Exception e) {
             entityTransaction.rollback();
