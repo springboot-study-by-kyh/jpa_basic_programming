@@ -6,16 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Member {
+public class Team {
 
     @Id
     @GeneratedValue
-    @Column(name = "MEMBER_ID")
+    @Column(name = "TEAM_ID")
     private Long id;
 
-    @Column(name = "USERNAME") // 필드와 매핑할 컬럼
-    private String username;
-
-    @Column(name = "TEAM_ID")
-    private Long teamId;
+    private String name;
 }

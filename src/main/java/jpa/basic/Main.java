@@ -19,10 +19,6 @@ public class Main {
 
         try {
 
-            Member member = new Member();
-
-
-            entityManager.persist(member);
             entityTransaction.commit();
         } catch (Exception e) {
             entityTransaction.rollback();
