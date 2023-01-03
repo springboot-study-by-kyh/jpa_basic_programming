@@ -26,13 +26,20 @@ public class Main {
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
+            member.changeTeam(team);
             entityManager.persist(member);
-
-
 
             entityManager.flush();
             entityManager.clear();
+
+            Team findTeam = entityManager.find(Team.class, team.getId());
+            List<Member> members = findTeam.getMembers();
+
+            System.out.println("=============");
+
+            for(Member member1 : members){
+                System.out.println("member : " + member1.getUsername());
+            }
 
             entityTransaction.commit();
         } catch (Exception e) {
