@@ -18,7 +18,7 @@ public class Member {
     @Column(name = "USERNAME") // 필드와 매핑할 컬럼
     private String username;
 
-    @ManyToOne // 하나의 팀에 여러개의 멤버가 소속됨.
+    @ManyToOne // 하나의 팀에 여러개의 멤버가 소속됨. (다인 쪽이 연관관계의 주인이 됨.)
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
