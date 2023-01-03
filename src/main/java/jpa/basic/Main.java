@@ -1,5 +1,6 @@
 package jpa.basic;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -29,12 +30,16 @@ public class Main {
             member.setUsername("member1");
             member.setTeam(team);
             entityManager.persist(member);
+            entityManager.flush();
+            entityManager.clear();
 
             Member findMember = entityManager.find(Member.class, member.getId());
 
-            Team findTeam = findMember.getTeam();
+            List<Member> members = findMember.getTeam().getMembers();
 
-            System.out.println("findTeam : " + findTeam.getName());
+            for(Member member1 : members){
+                System.out.println("member : " + member1.getUsername());
+            }
 
             entityTransaction.commit();
         } catch (Exception e) {
