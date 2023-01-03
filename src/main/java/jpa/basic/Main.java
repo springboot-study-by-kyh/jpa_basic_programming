@@ -26,8 +26,10 @@ public class Main {
 
             Member member = new Member();
             member.setUsername("member1");
-            member.changeTeam(team);
+//            member.changeTeam(team);
             entityManager.persist(member);
+
+            team.addMember(member);
 
             entityManager.flush();
             entityManager.clear();
