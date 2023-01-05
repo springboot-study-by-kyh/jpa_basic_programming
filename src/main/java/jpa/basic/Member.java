@@ -18,8 +18,8 @@ public class Member {
     @Column(name = "USERNAME") // 필드와 매핑할 컬럼
     private String username;
 
-    @ManyToOne // 하나의 팀에 여러개의 멤버가 소속됨. (다인 쪽이 연관관계의 주인이 됨. 다대일)
-    @JoinColumn(name = "TEAM_ID")
+    @ManyToOne // 하나의 팀에 여러개의 멤버가 소속됨. (다인 쪽이 연관관계의 주인이 됨. 다대향, DB입장에서 외래키가 있는곳이 무조건 '다' 임.)
+    @JoinColumn(name = "TEAM_ID") // FK를 관리함.
     private Team team;
 
 //    @Column(name = "TEAM_ID")

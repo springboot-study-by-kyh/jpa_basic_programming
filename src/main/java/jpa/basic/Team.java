@@ -18,8 +18,8 @@ public class Team {
 
     private String name;
 
-    @OneToMany(mappedBy = "team") // 일대다 매핑해서 어떤것과 연결 되어있는지 보여주는것.일 (팀 -> 멤버는 일대다)
-    private List<Member> members = new ArrayList<>(); // arrayList 초기화, 값 추가시 null 안뜨도록.
+    @OneToMany(mappedBy = "team") // 일대다 매핑해서 어떤것과 연결 되어있는지 보여주는것.일 (팀 -> 멤버는 일대다, team에 의해서 관리가 되는중.)
+    private List<Member> members = new ArrayList<>(); // arrayList 초기화, 값 추가시 null 안뜨도록 해줌. 가짜 매핑역할.
 
     public List<Member> getMembers() {
         return members;
