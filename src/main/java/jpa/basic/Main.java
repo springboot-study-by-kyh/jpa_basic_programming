@@ -32,14 +32,6 @@ public class Main {
             entityManager.flush();
             entityManager.close();
 
-            Member findMember = entityManager.find(Member.class, member.getId());
-
-            List<Member> members = findMember.getTeam().getMembers();
-
-            for(Member member1 : members){
-                System.out.println("member : " + member1.getUsername());
-            }
-
             entityTransaction.commit();
         } catch (Exception e) {
             entityTransaction.rollback();
