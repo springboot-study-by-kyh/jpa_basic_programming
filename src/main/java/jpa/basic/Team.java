@@ -18,8 +18,8 @@ public class Team {
 
     private String name;
 
-    @OneToMany(mappedBy = "team") // 1 대 다 매핑해서 어떤것과 연관이 있는지 보여주는것.
-    private List<Member> members = new ArrayList<>();
+    @OneToMany(mappedBy = "team") // 일대다 매핑해서 어떤것과 연결 되어있는지 보여주는것.일 (팀 -> 멤버는 일대다)
+    private List<Member> members = new ArrayList<>(); // arrayList 초기화, 값 추가시 null 안뜨도록.
 
     public List<Member> getMembers() {
         return members;

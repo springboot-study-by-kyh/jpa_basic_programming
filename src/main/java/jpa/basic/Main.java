@@ -19,25 +19,22 @@ public class Main {
         entityTransaction.begin();
 
         try {
+            // 저장
             Team team = new Team();
             team.setName("TeamA");
-//            team.getMembers().add(member);
             entityManager.persist(team);
 
             Member member = new Member();
             member.setUsername("member1");
-//            member.changeTeam(team);
+            member.setTeam(team);
             entityManager.persist(member);
 
-            team.addMember(member);
-
             entityManager.flush();
-            entityManager.clear();
+            entityManager.close();
 
-            Team findTeam = entityManager.find(Team.class, team.getId());
-            List<Member> members = findTeam.getMembers();
+            Member findMember = entityManager.find(Member.class, member.getId());
 
-            System.out.println("=============");
+            List<Member> members = findMember.getTeam().getMembers();
 
             for(Member member1 : members){
                 System.out.println("member : " + member1.getUsername());
