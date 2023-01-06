@@ -19,18 +19,17 @@ public class Main {
         entityTransaction.begin();
 
         try {
-            // 저장
-            Team team = new Team();
-            team.setName("TeamA");
-            entityManager.persist(team);
-
             Member member = new Member();
+
             member.setUsername("member1");
-            member.setTeam(team);
             entityManager.persist(member);
 
-            entityManager.flush();
-            entityManager.close();
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
+
+            entityManager.persist(team);
+
 
             entityTransaction.commit();
         } catch (Exception e) {
