@@ -1,11 +1,7 @@
 package jpa.basic;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.concurrent.locks.Lock;
 
 @Entity
 public class Member {
@@ -21,6 +17,10 @@ public class Member {
     @ManyToOne // 하나의 팀에 여러개의 멤버가 소속됨. (다인 쪽이 연관관계의 주인이 됨. 다대향, DB입장에서 외래키가 있는곳이 무조건 '다' 임.)
     @JoinColumn(name = "TEAM_ID") // FK를 관리함.
     private Team team;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
 
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
