@@ -19,17 +19,6 @@ public class Main {
         entityTransaction.begin();
 
         try {
-            Member member = new Member();
-
-            member.setUsername("member1");
-            entityManager.persist(member);
-
-            Team team = new Team();
-            team.setName("teamA");
-            team.getMembers().add(member);
-
-            entityManager.persist(team);
-
 
             entityTransaction.commit();
         } catch (Exception e) {
