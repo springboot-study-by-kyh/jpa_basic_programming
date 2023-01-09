@@ -1,5 +1,7 @@
 package jpa.basic;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import java.util.concurrent.locks.Lock;
 
@@ -24,6 +26,9 @@ public class Member {
 
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
+
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
 
     public Long getId() {
