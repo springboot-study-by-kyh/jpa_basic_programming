@@ -34,7 +34,6 @@ public class Main {
             Movie findMovie = entityManager.find(Movie.class, movie.getId());
 
 
-
             entityTransaction.commit();
         } catch (Exception e) {
             entityTransaction.rollback();
