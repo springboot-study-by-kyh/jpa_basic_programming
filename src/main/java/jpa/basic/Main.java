@@ -20,6 +20,21 @@ public class Main {
 
         try {
 
+            Movie movie = new Movie();
+            movie.setDirector("aaaa");
+            movie.setActor("bbbb");
+            movie.setName("바람과함께사라지다");
+            movie.setPrice(10000);
+
+            entityManager.persist(movie);
+
+            entityManager.flush();
+            entityManager.clear();
+
+            Movie findMovie = entityManager.find(Movie.class, movie.getId());
+
+
+
             entityTransaction.commit();
         } catch (Exception e) {
             entityTransaction.rollback();
