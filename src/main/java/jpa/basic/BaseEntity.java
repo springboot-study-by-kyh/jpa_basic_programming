@@ -3,7 +3,7 @@ package jpa.basic;
 import java.time.LocalDateTime;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
+@MappedSuperclass // 속성만 상속을 해줌(검색안됨.), @Entity의 경우 클래스 상속관계로 이용
 public class BaseEntity {
 
     private String createdBy;
