@@ -22,13 +22,14 @@ public class Main {
         try {
 
             Member member = new Member();
-            member.setUsername("user1");
-            member.setCreatedBy("kim");
-            member.setCreatedDate(LocalDateTime.now());
+
+            member.setUsername("hello");
 
             entityManager.persist(member);
             entityManager.flush();
             entityManager.clear();
+
+            Member findMember = entityManager.getReference(Member.class, member.getId());
 
             entityTransaction.commit();
         } catch (Exception e) {
@@ -39,4 +40,5 @@ public class Main {
 
         entityManagerFactory.close();
     }
+
 }
