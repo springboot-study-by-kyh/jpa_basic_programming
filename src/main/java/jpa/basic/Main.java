@@ -21,15 +21,18 @@ public class Main {
 
         try {
 
-            Member member = new Member();
+            Member member1 = new Member();
+            member1.setUsername("member1");
+            entityManager.persist(member1);
 
-            member.setUsername("hello");
-
-            entityManager.persist(member);
             entityManager.flush();
             entityManager.clear();
 
-            Member findMember = entityManager.getReference(Member.class, member.getId());
+            Member m1 = entityManager.find(Member.class, member1.getId());
+
+            Member reference = entityManager.getReference(Member.class, member1.getId());
+
+            
 
             entityTransaction.commit();
         } catch (Exception e) {
