@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnitUtil;
+import org.hibernate.Hibernate;
 
 public class Main {
 
@@ -30,9 +32,13 @@ public class Main {
 
             Member m1 = entityManager.find(Member.class, member1.getId());
 
-            Member reference = entityManager.getReference(Member.class, member1.getId());
+            Member refMember = entityManager.getReference(Member.class, member1.getId());
 
-            
+            refMember.getUsername();
+
+            Hibernate.initialize(refMember); // refMember 강제초기화
+
+            System.out.println("isLoaded : " + entityManagerFactory.getPersistenceUnitUtil().isLoaded(refMember));
 
             entityTransaction.commit();
         } catch (Exception e) {
