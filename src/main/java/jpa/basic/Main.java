@@ -23,22 +23,19 @@ public class Main {
 
         try {
 
-            Member member1 = new Member();
-            member1.setUsername("member1");
-            entityManager.persist(member1);
+            Child child1 = new Child();
+            Child child2 = new Child();
 
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
+
+            entityManager.persist(parent);
             entityManager.flush();
             entityManager.clear();
 
-            Member m1 = entityManager.find(Member.class, member1.getId());
-
-            Member refMember = entityManager.getReference(Member.class, member1.getId());
-
-            refMember.getUsername();
-
-            Hibernate.initialize(refMember); // refMember 강제초기화
-
-            System.out.println("isLoaded : " + entityManagerFactory.getPersistenceUnitUtil().isLoaded(refMember));
+            Parent findParent = entityManager.find(Parent.class, parent.getId());
+            findParent.getChildList().remove(0);
 
             entityTransaction.commit();
         } catch (Exception e) {
