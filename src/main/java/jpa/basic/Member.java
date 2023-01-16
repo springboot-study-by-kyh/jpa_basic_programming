@@ -21,13 +21,13 @@ public class Member extends BaseEntity {
     @Embedded // 값 타입을 사용하는 곳에 표
     private Address homeAddress;
 
-    @Embedded // 하나의 Entity에서 중복값이 있을 경우 @AttributeOverrides, @AttributeOverride
-    @AttributeOverrides({
-        @AttributeOverride(name = "city", column = @Column(name = "WORK_CITY")),
-        @AttributeOverride(name = "street", column = @Column(name = "WORK_STREET")),
-        @AttributeOverride(name = "zipcode", column = @Column(name = "WORK_ZIPCODE"))
-    })
-    private Address workAddress;
+//    @Embedded // 하나의 Entity에서 중복값이 있을 경우 @AttributeOverrides, @AttributeOverride
+//    @AttributeOverrides({
+//        @AttributeOverride(name = "city", column = @Column(name = "WORK_CITY")),
+//        @AttributeOverride(name = "street", column = @Column(name = "WORK_STREET")),
+//        @AttributeOverride(name = "zipcode", column = @Column(name = "WORK_ZIPCODE"))
+//    })
+//    private Address workAddress;
 
     public Long getId() {
         return id;
