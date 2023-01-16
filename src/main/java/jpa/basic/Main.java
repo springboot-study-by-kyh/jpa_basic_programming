@@ -23,19 +23,13 @@ public class Main {
 
         try {
 
-            Child child1 = new Child();
-            Child child2 = new Child();
+            Member member = new Member();
 
-            Parent parent = new Parent();
-            parent.addChild(child1);
-            parent.addChild(child2);
+            member.setUsername("hello");
+            member.setHomeAddress(new Address("city", "street", "12000"));
+            member.setPeriod(new Period());
 
-            entityManager.persist(parent);
-            entityManager.flush();
-            entityManager.clear();
-
-            Parent findParent = entityManager.find(Parent.class, parent.getId());
-            findParent.getChildList().remove(0);
+            entityManager.persist(member);
 
             entityTransaction.commit();
         } catch (Exception e) {

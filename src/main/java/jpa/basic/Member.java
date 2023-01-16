@@ -1,10 +1,6 @@
 package jpa.basic;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.*;
-import java.util.concurrent.locks.Lock;
 
 @Entity
 public class Member extends BaseEntity {
@@ -17,19 +13,21 @@ public class Member extends BaseEntity {
     @Column(name = "USERNAME") // 필드와 매핑할 컬럼
     private String username;
 
-    @ManyToOne (fetch = FetchType.LAZY)// 하나의 팀에 여러개의 멤버가 소속됨. (다인 쪽이 연관관계의 주인이 됨. 다대향, DB입장에서 외래키가 있는곳이 무조건 '다' 임.)
-    @JoinColumn(name = "TEAM_ID") // FK를 관리함.
-    private Team team;
+    // 기간 Period
+    @Embedded // 값 타입을 사용하는 곳에 표시
+    private Period period;
 
-//    @OneToOne
-//    @JoinColumn(name = "LOCKER_ID")
-//    private Locker locker;
+    // 주소 Address
+    @Embedded // 값 타입을 사용하는 곳에 표
+    private Address homeAddress;
 
-//    @Column(name = "TEAM_ID")
-//    private Long teamId;
-
-//    @OneToMany(mappedBy = "member")
-//    private List<MemberProduct> memberProducts = new ArrayList<>();
+    @Embedded // 하나의 Entity에서 중복값이 있을 경우 @AttributeOverrides, @AttributeOverride
+    @AttributeOverrides({
+        @AttributeOverride(name = "city", column = @Column(name = "WORK_CITY")),
+        @AttributeOverride(name = "street", column = @Column(name = "WORK_STREET")),
+        @AttributeOverride(name = "zipcode", column = @Column(name = "WORK_ZIPCODE"))
+    })
+    private Address workAddress;
 
     public Long getId() {
         return id;
@@ -47,16 +45,19 @@ public class Member extends BaseEntity {
         this.username = username;
     }
 
-    public Team getTeam() {
-        return team;
+    public Period getPeriod() {
+        return period;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setPeriod(Period period) {
+        this.period = period;
     }
 
-//    public void changeTeam(Team team) {
-//        this.team = team;
-//        team.getMembers().add(this);
-//    }
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
 }
