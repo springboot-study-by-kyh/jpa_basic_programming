@@ -1,5 +1,9 @@
 package jpa.basic;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -13,13 +17,26 @@ public class Member extends BaseEntity {
     @Column(name = "USERNAME") // 필드와 매핑할 컬럼
     private String username;
 
+    // 주소 Address
+    @Embedded // 값 타입을 사용하는 곳에 표
+    private Address homeAddress;
+
+    @ElementCollection
+    @CollectionTable(name = "FAVORITE_FOOD", joinColumns =
+    @JoinColumn(name = "MEMBER_ID"))
+    @Column(name = "FOOD_NAME")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "ADDRESS", joinColumns =
+    @JoinColumn(name = "MEMBER_ID"))
+    private List<Address> addressHistory = new ArrayList<>();
+
     // 기간 Period
     @Embedded // 값 타입을 사용하는 곳에 표시
     private Period period;
 
-    // 주소 Address
-    @Embedded // 값 타입을 사용하는 곳에 표
-    private Address homeAddress;
+
 
 //    @Embedded // 하나의 Entity에서 중복값이 있을 경우 @AttributeOverrides, @AttributeOverride
 //    @AttributeOverrides({
