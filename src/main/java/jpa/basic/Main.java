@@ -23,7 +23,23 @@ public class Main {
 
         try {
 
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setHomeAddress(new Address("city1", "street1", "zipcode1"));
 
+            member.getFavoriteFoods().add("chicken");
+            member.getFavoriteFoods().add("pizza");
+            member.getFavoriteFoods().add("coke");
+
+            member.getAddressHistory().add(new Address("old1", "street1", "zipcode1"));
+            member.getAddressHistory().add(new Address("old2", "street1", "zipcode1"));
+
+            entityManager.persist(member);
+
+            entityManager.flush();
+            entityManager.clear();
+
+            Member findMember = entityManager.find(Member.class, member.getId());
 
             entityTransaction.commit();
         } catch (Exception e) {
