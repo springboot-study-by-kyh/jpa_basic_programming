@@ -41,6 +41,16 @@ public class Main {
 
             Member findMember = entityManager.find(Member.class, member.getId());
 
+            Address a  = findMember.getHomeAddress();
+
+            findMember.setHomeAddress(new Address("newCity", a.getStreet(), a.getZipcode()));
+
+            findMember.getFavoriteFoods().remove("chicken");
+            findMember.getFavoriteFoods().add("korean foods");
+
+            findMember.getAddressHistory().remove(new Address("old1", "street1", "zipcode1"));
+            findMember.getAddressHistory().add(new Address("newCity1", "street1", "zipcode1"));
+
             entityTransaction.commit();
         } catch (Exception e) {
             entityTransaction.rollback();
