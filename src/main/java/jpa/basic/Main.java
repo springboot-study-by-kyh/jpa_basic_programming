@@ -31,8 +31,8 @@ public class Main {
             member.getFavoriteFoods().add("pizza");
             member.getFavoriteFoods().add("coke");
 
-            member.getAddressHistory().add(new Address("old1", "street1", "zipcode1"));
-            member.getAddressHistory().add(new Address("old2", "street1", "zipcode1"));
+            member.getAddressHistory().add(new AddressEntity("old1", "street1", "zipcode1"));
+            member.getAddressHistory().add(new AddressEntity("old2", "street1", "zipcode1"));
 
             entityManager.persist(member);
 
@@ -48,8 +48,8 @@ public class Main {
             findMember.getFavoriteFoods().remove("chicken");
             findMember.getFavoriteFoods().add("korean foods");
 
-            findMember.getAddressHistory().remove(new Address("old1", "street1", "zipcode1"));
-            findMember.getAddressHistory().add(new Address("newCity1", "street1", "zipcode1"));
+            findMember.getAddressHistory().remove(new AddressEntity("old1", "street1", "zipcode1"));
+            findMember.getAddressHistory().add(new AddressEntity("newCity1", "street1", "zipcode1"));
 
             entityTransaction.commit();
         } catch (Exception e) {
