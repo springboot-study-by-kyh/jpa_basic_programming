@@ -7,6 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnitUtil;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Hibernate;
 
 public class Main {
@@ -22,11 +25,14 @@ public class Main {
         entityTransaction.begin();
 
         try {
-            List<Member> result = entityManager.createQuery(
-                "select m From Member m where m.username like 'kim%'"
-                , Member.class
-            ).getResultList();
 
+            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+            CriteriaQuery<Member> query = cb.createQuery(Member.class);
+            Root<Member> m = query.from(Member.class);
+            CriteriaQuery<Member> cq = query.select(m).where(cb.equal(m.get("username"), "kim"));
+
+            List<Member> resultList = entityManager.createQuery(cq).getResultList();
 
             entityTransaction.commit();
         } catch (Exception e) {
