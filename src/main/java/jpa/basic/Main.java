@@ -1,16 +1,9 @@
 package jpa.basic;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnitUtil;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import org.hibernate.Hibernate;
 
 public class Main {
 
@@ -26,8 +19,8 @@ public class Main {
 
         try {
 
-            entityManager.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER").getResultList();
-
+            entityManager.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER")
+                .getResultList();
 
             entityTransaction.commit();
         } catch (Exception e) {
