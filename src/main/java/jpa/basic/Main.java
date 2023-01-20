@@ -26,13 +26,8 @@ public class Main {
 
         try {
 
-            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            entityManager.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER").getResultList();
 
-            CriteriaQuery<Member> query = cb.createQuery(Member.class);
-            Root<Member> m = query.from(Member.class);
-            CriteriaQuery<Member> cq = query.select(m).where(cb.equal(m.get("username"), "kim"));
-
-            List<Member> resultList = entityManager.createQuery(cq).getResultList();
 
             entityTransaction.commit();
         } catch (Exception e) {
