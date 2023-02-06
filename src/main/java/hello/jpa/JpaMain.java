@@ -14,17 +14,16 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
 
         tx.begin();
+        try {
 
-        Member member = new Member();
-        member.setId(1L);
-        member.setName("hello");
-        em.persist(member);  // 저장
+            Member findMember = em.find(Member.class, 1L);
 
-        tx.commit();
-
-        // code
-        em.close();
-
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            em.close(); // 항상 작업이 끝나면 "EntityManager" 는 닫아줘야한다.
+        }
         emf.close();
     }
 
