@@ -37,7 +37,7 @@ public class JpaMain {
             member.setName("JPA");
 
             em.persist(member); // 영속상태
-
+            em.detach(member); // 영속성 컨텍스트에서 지우는것.
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
