@@ -13,10 +13,30 @@ public class JpaMain {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
 
+        /**
+         * 영속성 컨텍스트
+         * - 엔티티를 영구 저장하는 환경이라는 의미
+         * - EntityManager.persist(entity);
+         * - DB가 아니라 영속성 컨텍스트에 접근
+         */
+
+        /**
+         * 비영속 상태
+         * - JPA와 전혀 연관이 없는 상
+         *
+         * 영속 상태
+         * - EntityManager em = emf.createEntityManager();
+         * em.persist(~) : 객체를 저장한 상태(영속)
+         */
+
         tx.begin();
         try {
 
-            Member findMember = em.find(Member.class, 1L);
+            Member member = new Member();
+            member.setId(100L);
+            member.setName("JPA");
+
+            em.persist(member); // 영속상태
 
             tx.commit();
         } catch (Exception e) {
