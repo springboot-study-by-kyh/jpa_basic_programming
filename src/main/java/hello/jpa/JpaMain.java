@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
 
@@ -17,16 +18,20 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = em.find(Member.class, 1L);
-            member.setName("helloB");
+//            Member member = em.find(Member.class, 1L);
+
+            List<Member> result = em.createQuery("select m from Member as m", Member.class).getResultList();
+
+            for (Member member : result) {
+                System.out.println(member);
+            }
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
             em.close();
         }
-
-
 
         emf.close();
 
@@ -40,6 +45,18 @@ public class JpaMain {
             member.setName("hello");
             em.persist(member); // member 객체 저장
 
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            em.close();
+        }
+        */
+
+        /* JPA 수정
+        try {
+            Member member = em.find(Member.class, 1L);
+            member.setName("helloB");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
