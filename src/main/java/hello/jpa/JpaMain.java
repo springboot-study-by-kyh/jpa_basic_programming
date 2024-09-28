@@ -17,6 +17,24 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Member member = em.find(Member.class, 1L);
+            member.setName("helloB");
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            em.close();
+        }
+
+
+
+        emf.close();
+
+    }
+
+}
+        /* JPA 데이터 저장
+        try {
             Member member = new Member();
             member.setId(1L);
             member.setName("hello");
@@ -28,9 +46,16 @@ public class JpaMain {
         } finally {
             em.close();
         }
+        */
 
-        emf.close();
-
-    }
-
-}
+        /* 데이터 삭제
+        try {
+                Member member = em.find(Member.class, 1L);
+        em.remove(member);
+        tx.commit();
+        } catch (Exception e) {
+        tx.rollback();
+        } finally {
+        em.close();
+        }
+        */
