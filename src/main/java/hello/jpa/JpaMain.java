@@ -19,10 +19,9 @@ public class JpaMain {
 
         try {
 
-            Member member = new Member(300L, "member300");
-            // 영속 상태
-            em.persist(member);
-            em.flush(); // 트랜잭션을 미리 확인하고 싶을 경우
+            Member member = em.find(Member.class, 1L);
+            member.setName("TEST");
+            em.detach(member);
             System.out.println("before");
             tx.commit();
 
@@ -100,3 +99,11 @@ public class JpaMain {
             tx.commit();
 
          */
+
+            /* 준영속 상태
+            Member member = em.find(Member.class, 1L);
+            member.setName("TEST");
+            em.detach(member);
+            System.out.println("before");
+            tx.commit();
+            */
