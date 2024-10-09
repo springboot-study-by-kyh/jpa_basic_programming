@@ -18,17 +18,14 @@ public class JpaMain {
         tx.begin();
 
         try {
-            // 비영속 상태
-            Member member = new Member();
-            member.setId(3L);
-            member.setName("HELLO JPA");
 
+            Member member = new Member(300L, "member300");
             // 영속 상태
             em.persist(member);
-
+            em.flush(); // 트랜잭션을 미리 확인하고 싶을 경우
             System.out.println("before");
             tx.commit();
-            System.out.println("after");
+
 
         } catch (Exception e) {
             tx.rollback();
@@ -93,3 +90,13 @@ public class JpaMain {
             em.close();
         }
         */
+
+        /* flush mode
+        Member member = new Member(300L, "member300");
+            // 영속 상태
+            em.persist(member);
+            em.flush(); // 트랜잭션을 미리 확인하고 싶을 경우
+            System.out.println("before");
+            tx.commit();
+
+         */

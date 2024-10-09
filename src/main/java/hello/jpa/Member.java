@@ -2,6 +2,7 @@ package hello.jpa;
 
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
 public class Member {
 
     @Id // PK
